@@ -60,8 +60,6 @@ public class CameraView extends CameraActivity {
         mRgb=inputFrame.rgba().t();
         classifier.detectMultiScale(mGray,rect,1.3,5);
         for (Rect r:rect.toList()){
-          Mat submat=mGray.submat(r);
-         // Imgproc.blur(submat,submat,new Size(10,10));
           Imgproc.rectangle(mRgb,r,new Scalar(0,255,0),5);
         }
         return mRgb.t();

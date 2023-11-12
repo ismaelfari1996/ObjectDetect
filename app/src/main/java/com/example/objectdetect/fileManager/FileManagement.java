@@ -46,4 +46,11 @@ public class FileManagement {
         }
         return fileSystemList;
     }
+
+    public void donwloadFiles(Context context, LinkedHashMap<String,String> urlList){
+        LinkedHashMap<String,String> downloadList=checkSystemFile(urlList);
+        if(downloadList.size()>0){
+            new FileDonwloader(context).execute(downloadList);
+        }
+    }
 }

@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,"Se produjo un error al crear lo archivos",
                                 Toast.LENGTH_LONG)
                                 .show();
-            else
-                new FileDonwloader(this).execute(new FileManagement(this)
-                        .checkSystemFile(downloadUrl));
+            else {
+                new FileManagement(this).donwloadFiles(this,downloadUrl);
+            }
 
 
         btn.setOnClickListener(view -> {

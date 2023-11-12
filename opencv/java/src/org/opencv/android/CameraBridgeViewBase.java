@@ -427,6 +427,7 @@ public abstract class CameraBridgeViewBase extends SurfaceView implements Surfac
         if (bmpValid && mCacheBitmap != null) {
             Canvas canvas = getHolder().lockCanvas();
             if (canvas != null) {
+               // canvas.rotate(90,0,0);//agregado
                 canvas.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
                 if (BuildConfig.DEBUG)
                     Log.d(TAG, "mStretch value: " + mScale);
@@ -488,6 +489,8 @@ public abstract class CameraBridgeViewBase extends SurfaceView implements Surfac
                 matrix.preTranslate( ( canvas.getWidth() - mCacheBitmap.getWidth() ) / 2f, ( canvas.getHeight() - mCacheBitmap.getHeight() ) / 2f );
                 matrix.postRotate( 90f, ( canvas.getWidth()) / 2f, canvas.getHeight() / 2f );
                 float scale = (float) canvas.getWidth() / (float) mCacheBitmap.getHeight();
+                float scale2 = (float) canvas.getHeight() / (float) mCacheBitmap.getWidth();
+                scale=scale2>scale?scale2:scale;
                 matrix.postScale(scale, scale, canvas.getWidth() / 2f , canvas.getHeight() / 2f );
                 canvas.drawBitmap( mCacheBitmap, matrix, null );
 
