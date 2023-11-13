@@ -35,10 +35,10 @@ public class CameraView extends CameraActivity {
     setContentView(R.layout.activity_camera_view);
     javaCameraViewBase=findViewById(R.id.frame_Surface);
     javaCameraViewBase.setCameraIndex(JavaCameraView.CAMERA_ID_BACK);
-    Button btn=findViewById(R.id.button2);
+    /*Button btn=findViewById(R.id.button2);
     btn.setOnClickListener(view -> {
       toggleCamera();
-    });
+    });*/
     javaCameraViewBase.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener2() {
       @Override
       public void onCameraViewStarted(int width, int height) {

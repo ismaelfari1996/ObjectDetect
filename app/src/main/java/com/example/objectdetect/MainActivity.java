@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'objectdetect' library on application startup.
-    static String msg="hola";
+    static String msg="";
     private static final List<String> systemFiles=new ArrayList<>();
     private static final LinkedHashMap<String,String> downloadUrl=new LinkedHashMap<>();
     static {
@@ -42,11 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Button btn=binding.button;
-        // Example of a call to a native method
-        TextView tv = binding.sampleText;
-        tv.setText(msg);
-
+        ImageButton btn=findViewById(R.id.camera);
         // create all system files, folder
         if(!permission.checkPermission(this))
             permission.requestPermission(this);
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn.setOnClickListener(view -> {
             if(permission.checkPermission(this)) {
+                new FileManagement(this).donwloadFiles(this,downloadUrl);
                 Intent intent = new Intent(this, CameraView.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
